@@ -57,10 +57,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player?.zRotation = -90 * degreesToRadians
         addChild(player!)
         spawnAstroid()
+        spawnAstroid()
+        spawnAstroid()
         
         let gravityVector = vector_float3(0,-1,0)
         gravityNode = SKFieldNode.linearGravityField(withVector: gravityVector)
-        gravityNode!.strength = 1.0
+        gravityNode!.strength = 1
         
         gravityNode!.isEnabled = true
         
@@ -77,14 +79,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let joinMe = SKFieldNode.radialGravityField()
         joinMe.strength = 1
         joinMe.isEnabled = true
-        
+
         joinMe.physicsBody?.categoryBitMask = categories.astroidField
         joinMe.physicsBody?.collisionBitMask = categories.noCat
         joinMe.physicsBody?.contactTestBitMask = categories.playerCat
         joinMe.physicsBody?.fieldBitMask = categories.astroidField
         player?.addChild(joinMe)
-//        joinMe.categoryBitMask = categories.astroidCat
-//        player?.addChild(joinMe)
         
         
     }
@@ -162,7 +162,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        scene?.physicsWorld.gravity = direction
         gravityNode?.zRotation = angle
         let laserColor:UIColor = UIColor(displayP3Red: 41.0 / 255.0, green: 184.0 / 255.0, blue: 242.0 / 255.0, alpha: 1.0)
-        laser = SKSpriteNode(color: laserColor, size: CGSize(width: 7, height: 7))
+        laser = SKSpriteNode(color: laserColor, size: CGSize(width: 21, height: 21))
         laser?.position = player!.position
         self.addChild(laser!)
         
